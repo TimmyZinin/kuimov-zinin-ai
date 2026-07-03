@@ -1,0 +1,1515 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Зинин ✕ Куимов — корпоративные хакатоны по ИИ</title>
+<meta name="description" content="Корпоративный хакатон по ИИ, где команда собирает реальный продукт за два дня. Рабочий прототип под вашу задачу плюс обученная команда." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     ЗИНИН ✕ КУИМОВ — лендинг «Плайя на закате»
+     Тёплый светлый максимализм. Палитра песок/крем/глина + закат.
+     ============================================================ */
+
+  :root {
+    /* Базовая тёплая палитра */
+    --sand:        #F2E9D8;   /* фон */
+    --cream:       #FBF5E9;   /* панель */
+    --clay:        #ECE0C9;   /* панель+ */
+    --ink:         #2A2018;   /* тёпло-чёрный текст */
+    --ink-soft:    #6B5D4D;   /* приглушённый текст */
+    --ink-faint:   #9A8B76;   /* очень тихий текст / лейблы */
+    --line:        #E2D4B8;   /* тонкие линии */
+    --line-soft:   #EBE0CC;
+
+    /* Закатный градиент */
+    --sun-magenta: #E84855;
+    --sun-orange:  #F6A21E;
+    --sun-terra:   #C85128;
+    --sunset: linear-gradient(100deg, #E84855 0%, #F6A21E 52%, #C85128 100%);
+    --sunset-soft: linear-gradient(100deg, #E84855 0%, #F6A21E 55%, #C85128 100%);
+
+    /* Дополнительные акценты */
+    --violet:      #6B4E9E;   /* дусковый фиолет */
+    --violet-deep: #543C82;
+    --sage:        #7A8B5A;   /* шалфей */
+
+    /* Типографика */
+    --serif: "Playfair Display", Georgia, serif;
+    --sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+    /* Ритм */
+    --maxw: 1160px;
+    --radius: 22px;
+    --radius-sm: 14px;
+    --pad-section: clamp(64px, 9vw, 132px);
+    --ease: cubic-bezier(.22, .61, .36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.62;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(232, 72, 85, .22); color: var(--ink); }
+
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Утилиты ---------- */
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sun-terra);
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 26px;
+  }
+  .label::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--sunset);
+    border-radius: 2px;
+  }
+
+  .grad-text {
+    background: var(--sunset);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  h1, h2, h3 { font-family: var(--serif); font-weight: 700; line-height: 1.06; letter-spacing: -0.015em; }
+
+  /* ---------- Кнопки ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: 16px;
+    letter-spacing: -0.01em;
+    padding: 16px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s var(--ease), color .3s var(--ease);
+    white-space: nowrap;
+    will-change: transform;
+  }
+  .btn-primary {
+    color: #fff;
+    background: var(--sunset);
+    box-shadow: 0 10px 26px -10px rgba(200, 81, 40, .55), inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  .btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 18px 38px -12px rgba(200, 81, 40, .7), inset 0 1px 0 rgba(255,255,255,.3);
+  }
+  .btn-ghost {
+    color: var(--ink);
+    background: transparent;
+    border: 1.5px solid var(--ink);
+  }
+  .btn-ghost:hover {
+    transform: translateY(-3px);
+    background: var(--ink);
+    color: var(--cream);
+  }
+  .btn .arr { transition: transform .35s var(--ease); }
+  .btn:hover .arr { transform: translateX(4px); }
+
+  /* ============================================================
+     ШАПКА
+     ============================================================ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(242, 233, 216, .82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .4s var(--ease), background .4s var(--ease);
+  }
+  .nav.scrolled {
+    border-bottom-color: var(--line);
+    background: rgba(242, 233, 216, .92);
+  }
+  .nav-inner {
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+  }
+  .logo .wheel {
+    display: inline-flex;
+    gap: 2.5px;
+    align-items: flex-end;
+    height: 22px;
+  }
+  .logo .wheel span {
+    width: 3.5px;
+    border-radius: 2px;
+    display: block;
+  }
+  .logo .x { color: var(--sun-terra); font-style: italic; margin: 0 1px; }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 34px;
+  }
+  .nav-links a {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink-soft);
+    transition: color .25s var(--ease);
+    position: relative;
+  }
+  .nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0; bottom: -5px;
+    width: 0; height: 2px;
+    background: var(--sunset);
+    border-radius: 2px;
+    transition: width .3s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-cta { display: flex; align-items: center; gap: 18px; }
+  .nav-cta .btn { padding: 12px 22px; font-size: 15px; }
+  .menu-toggle { display: none; }
+  .mobile-menu { display: none; }
+
+  /* ============================================================
+     HERO
+     ============================================================ */
+  .hero {
+    position: relative;
+    padding: clamp(48px, 7vw, 96px) 0 clamp(56px, 8vw, 110px);
+    text-align: center;
+    overflow: hidden;
+  }
+  /* Тёплое солнечное свечение */
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: -22%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 940px;
+    max-width: 130vw;
+    height: 620px;
+    background: radial-gradient(ellipse 60% 60% at 50% 40%,
+        rgba(246, 162, 30, .28) 0%,
+        rgba(232, 72, 85, .14) 38%,
+        rgba(242, 233, 216, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero .wrap { position: relative; z-index: 1; }
+
+  /* Цветовое колесо — набор вертикальных цветных полос */
+  .color-wheel {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 6px;
+    height: 66px;
+    margin-bottom: 34px;
+    padding: 16px 22px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 40px -22px rgba(200, 81, 40, .4);
+  }
+  .color-wheel span {
+    width: 9px;
+    border-radius: 5px;
+    display: block;
+    animation: bar-pulse 3.4s var(--ease) infinite;
+  }
+  @keyframes bar-pulse {
+    0%, 100% { transform: scaleY(1); }
+    50%      { transform: scaleY(1.18); }
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 9px 18px;
+    margin-bottom: 34px;
+  }
+  .status .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--sun-magenta);
+    box-shadow: 0 0 0 0 rgba(232, 72, 85, .5);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(232, 72, 85, .5); }
+    70%  { box-shadow: 0 0 0 9px rgba(232, 72, 85, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(232, 72, 85, 0); }
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 6.6vw, 84px);
+    font-weight: 800;
+    max-width: 16ch;
+    margin: 0 auto 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 700;
+  }
+  .hero .sub {
+    font-size: clamp(17px, 2.1vw, 21px);
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0 auto 42px;
+    line-height: 1.55;
+    font-weight: 500;
+  }
+  .hero-btns {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ============================================================
+     ОБЩЕЕ ДЛЯ СЕКЦИЙ
+     ============================================================ */
+  section { position: relative; }
+  .section-pad { padding: var(--pad-section) 0; }
+
+  .section-head { max-width: 720px; margin-bottom: 56px; }
+  .section-head h2 {
+    font-size: clamp(30px, 4.4vw, 50px);
+    font-weight: 700;
+  }
+  .section-head .lead {
+    margin-top: 22px;
+    font-size: clamp(16px, 1.9vw, 19px);
+    color: var(--ink-soft);
+    font-weight: 500;
+    max-width: 60ch;
+  }
+
+  /* Лёгкое тёплое свечение по краям некоторых секций */
+  .glow-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 50% at 100% 0%,
+        rgba(246, 162, 30, .12) 0%, rgba(242,233,216,0) 55%);
+    pointer-events: none;
+  }
+
+  /* ---------- 01 · ЧТО ЭТО ---------- */
+  .what { background: var(--sand); }
+  .what-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+  }
+  .vcard {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 30px 26px 34px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+  .vcard:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 50px -28px rgba(120, 80, 40, .45);
+    border-color: var(--line-soft);
+  }
+  .vcard .ico {
+    width: 50px; height: 50px;
+    border-radius: 14px;
+    display: grid;
+    place-items: center;
+    margin-bottom: 22px;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+  }
+  .vcard:nth-child(1) .ico { background: var(--sunset); }
+  .vcard:nth-child(2) .ico { background: linear-gradient(135deg, #7A8B5A, #5d6c43); }
+  .vcard:nth-child(3) .ico { background: linear-gradient(135deg, #6B4E9E, #543C82); }
+  .vcard:nth-child(4) .ico { background: linear-gradient(135deg, #F6A21E, #C85128); }
+  .vcard h3 { font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+  .vcard p { font-size: 15px; color: var(--ink-soft); line-height: 1.55; font-weight: 500; }
+
+  /* ---------- 02 · УСЛУГИ ---------- */
+  .formats { background: var(--clay); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+  .scard {
+    border-radius: var(--radius);
+    padding: 34px 32px 38px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+    position: relative;
+    overflow: hidden;
+  }
+  .scard:hover { transform: translateY(-7px); }
+  .scard .stag {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    opacity: .85;
+  }
+  .scard h3 { font-size: clamp(23px, 2.8vw, 29px); font-weight: 700; margin-bottom: 13px; }
+  .scard p { font-size: 15.5px; line-height: 1.55; font-weight: 500; }
+  .scard .sprice {
+    margin-top: auto;
+    padding-top: 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .scard .pnum { font-family: var(--serif); font-weight: 800; font-size: 30px; letter-spacing: -0.01em; }
+  .scard .pnote {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    opacity: .85;
+  }
+
+  /* Карта 1 — Обучение фаундера (крем) */
+  .scard.scard-founder {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    color: var(--ink);
+    box-shadow: 0 18px 44px -30px rgba(120,80,40,.4);
+  }
+  .scard-founder p { color: var(--ink-soft); }
+  .scard-founder .stag { color: var(--sage); }
+  .scard-founder .pnum { color: var(--sun-terra); }
+  .scard-founder .pnote { color: var(--ink-faint); }
+
+  /* Карта 2 — Обучение команды / C-level (фиолет) */
+  .scard.scard-team {
+    background: var(--violet);
+    color: #fff;
+    box-shadow: 0 22px 50px -28px rgba(107, 78, 158, .8);
+  }
+  .scard-team p { color: rgba(255,255,255,.9); }
+  .scard-team .stag { color: rgba(255,255,255,.78); }
+  .scard-team .pnum { color: #fff; }
+  .scard-team .pnote { color: rgba(255,255,255,.75); }
+
+  /* Карта 3 — Корпоративный хакатон (доминирует, закатный градиент, во всю ширину) */
+  .scard.scard-hackathon {
+    grid-column: 1 / -1;
+    background: var(--sunset);
+    color: #fff;
+    padding: 44px clamp(28px, 4vw, 56px) 48px;
+    box-shadow: 0 30px 64px -28px rgba(200, 81, 40, .75);
+  }
+  .scard-hackathon .hbadge {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,.2);
+    padding: 7px 16px;
+    border-radius: 100px;
+    margin-bottom: 22px;
+  }
+  .scard-hackathon .stag { color: rgba(255,255,255,.85); }
+  .scard-hackathon h3 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 16px; max-width: 20ch; }
+  .scard-hackathon .hlead {
+    font-size: clamp(16px, 1.9vw, 19px);
+    max-width: 62ch;
+    color: rgba(255,255,255,.95);
+    margin-bottom: 36px;
+    font-weight: 500;
+    line-height: 1.55;
+  }
+  .hdays {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 34px;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,.25);
+  }
+  .hday-num {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: rgba(255,255,255,.18);
+    padding: 5px 12px;
+    border-radius: 100px;
+    margin-bottom: 14px;
+  }
+  .hday h4 { font-family: var(--serif); font-size: 21px; font-weight: 700; margin-bottom: 8px; }
+  .hday p { font-size: 14.5px; line-height: 1.55; color: rgba(255,255,255,.92); font-weight: 500; }
+  .hmeta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px 30px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: rgba(255,255,255,.85);
+    margin-bottom: 36px;
+  }
+  .hmeta span { display: flex; align-items: center; gap: 8px; }
+  .hmeta span::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #fff; opacity: .7; flex: none; }
+  .scard-hackathon .sprice {
+    border-top: 1px solid rgba(255,255,255,.25);
+    padding-top: 28px;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+  .scard-hackathon .pnum { font-size: 42px; }
+  .scard-hackathon .pnote { color: rgba(255,255,255,.8); font-size: 13px; text-align: right; }
+
+  /* ---------- 03 · КАК ПРОХОДИТ ---------- */
+  .process { background: var(--sand); }
+  .cohort-box {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px clamp(24px, 5vw, 52px);
+    margin-bottom: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    flex-wrap: wrap;
+    box-shadow: 0 22px 56px -38px rgba(120,80,40,.45);
+  }
+  .cohort-box .cl-kicker {
+    display: block;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 8px;
+  }
+  .cohort-box strong {
+    font-family: var(--serif);
+    font-style: normal;
+    font-size: clamp(20px, 2.4vw, 26px);
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    font-weight: 600;
+  }
+
+  /* Таймлайн */
+  .timeline {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    padding-top: 18px;
+  }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 35px;
+    left: calc(10% );
+    right: calc(10% );
+    height: 2.5px;
+    background: linear-gradient(90deg, var(--sun-magenta), var(--sun-orange) 50%, var(--sun-terra));
+    border-radius: 2px;
+    z-index: 0;
+  }
+  .tstep { text-align: center; position: relative; z-index: 1; }
+  .tstep .node {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    background: var(--cream);
+    border: 2.5px solid var(--sun-orange);
+    margin: 0 auto 18px;
+    display: grid;
+    place-items: center;
+    font-family: var(--mono);
+    font-weight: 700;
+    font-size: 14px;
+    color: var(--sun-terra);
+    transition: transform .35s var(--ease), background .35s var(--ease), color .35s var(--ease);
+  }
+  .tstep:hover .node {
+    transform: scale(1.12);
+    background: var(--sunset);
+    color: #fff;
+    border-color: transparent;
+  }
+  .tstep h4 { font-family: var(--serif); font-size: 19px; font-weight: 700; margin-bottom: 7px; }
+  .tstep p { font-size: 13.5px; color: var(--ink-soft); line-height: 1.45; font-weight: 500; }
+
+  /* ---------- 04 · ЧТО АВТОМАТИЗИРУЕМ ДАЛЬШЕ ---------- */
+  .automation { background: var(--clay); }
+  .auto-pricing {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+  }
+  .auto-price-item {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-sm);
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .auto-price-item .apn { font-family: var(--serif); font-weight: 800; font-size: 27px; color: var(--sun-terra); }
+  .auto-price-item:nth-child(2) .apn { color: var(--violet); }
+  .auto-price-item .apl { font-size: 14.5px; color: var(--ink-soft); font-weight: 500; line-height: 1.5; }
+
+  /* ---------- 05 · КОМАНДА ---------- */
+  .team { background: var(--sand); }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+  }
+  .person {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 22px 22px 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .person:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 54px -30px rgba(120,80,40,.45);
+  }
+  .person .pportrait {
+    aspect-ratio: 4 / 5;
+    width: 100%;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--clay);
+  }
+  .person .pportrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .person .pportrait-mono {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(150deg, var(--violet), var(--sun-terra));
+    position: relative;
+  }
+  .person .pportrait-mono::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 28% 20%, rgba(255,255,255,.22), transparent 60%);
+  }
+  .person .mono-letters {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 700;
+    font-size: clamp(56px, 9vw, 84px);
+    color: #fff;
+    letter-spacing: 0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .person .pbody { padding: 0 14px; }
+  .person .pname { font-family: var(--serif); font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .person .prole {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--sun-terra);
+    margin-bottom: 14px;
+  }
+  .person:nth-child(2) .prole { color: var(--violet); }
+  .person .pbio { font-size: 15px; color: var(--ink-soft); line-height: 1.55; font-weight: 500; }
+
+  /* ---------- 06 · РЕЗУЛЬТАТЫ ---------- */
+  .results { background: var(--clay); }
+  .results-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr 1fr;
+    gap: 18px;
+  }
+  .metric {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 36px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 180px;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease);
+  }
+  .metric:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 24px 50px -30px rgba(120,80,40,.42);
+  }
+  .metric .big {
+    font-family: var(--serif);
+    font-size: clamp(40px, 5vw, 56px);
+    font-weight: 800;
+    line-height: 1;
+    color: var(--sun-terra);
+  }
+  .metric .mlabel { font-size: 14.5px; color: var(--ink-soft); font-weight: 600; }
+
+  .metric.metric-big { justify-content: center; gap: 14px; }
+  .metric-big .big { font-size: clamp(48px, 6vw, 64px); }
+  .metric-big .mlabel { font-size: 16px; }
+
+  /* Карточки-доказательства (названы реальные хакатоны) */
+  .hproof {
+    justify-content: center;
+    gap: 10px;
+  }
+  .hproof .hkicker {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .hproof:nth-of-type(2) .hkicker { color: var(--sage); }
+  .hproof:nth-of-type(3) .hkicker { color: var(--violet); }
+  .hproof .hname {
+    font-family: var(--serif);
+    font-size: 23px;
+    font-weight: 700;
+    color: var(--ink);
+    line-height: 1.2;
+  }
+
+  /* ---------- 07 · FAQ ---------- */
+  .faq { background: var(--sand); }
+  .faq-list { max-width: 820px; }
+  .faq-item {
+    border-bottom: 1px solid var(--line);
+  }
+  .faq-item:first-child { border-top: 1px solid var(--line); }
+  .faq-q {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    padding: 26px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    font-family: var(--serif);
+    font-size: clamp(18px, 2.3vw, 23px);
+    font-weight: 600;
+    color: var(--ink);
+    transition: color .25s var(--ease);
+  }
+  .faq-q:hover { color: var(--sun-terra); }
+  .faq-icon {
+    flex: 0 0 30px;
+    width: 30px; height: 30px;
+    position: relative;
+  }
+  .faq-icon::before, .faq-icon::after {
+    content: "";
+    position: absolute;
+    top: 50%; left: 50%;
+    background: var(--sun-terra);
+    border-radius: 2px;
+    transform: translate(-50%, -50%);
+    transition: transform .35s var(--ease), opacity .35s var(--ease);
+  }
+  .faq-icon::before { width: 16px; height: 2.5px; }
+  .faq-icon::after  { width: 2.5px; height: 16px; }
+  .faq-item.open .faq-icon::after { transform: translate(-50%, -50%) rotate(90deg); opacity: 0; }
+  .faq-a {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .45s var(--ease);
+  }
+  .faq-a-inner {
+    padding: 0 4px 28px;
+    font-size: 16px;
+    color: var(--ink-soft);
+    line-height: 1.62;
+    font-weight: 500;
+    max-width: 68ch;
+  }
+
+  /* ---------- 07 · ФИНАЛЬНЫЙ CTA ---------- */
+  .cta {
+    background: var(--sand);
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .cta::before {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    max-width: 130vw;
+    height: 500px;
+    background: radial-gradient(ellipse 60% 60% at 50% 60%,
+        rgba(246,162,30,.26) 0%, rgba(232,72,85,.12) 40%, rgba(242,233,216,0) 70%);
+    pointer-events: none;
+  }
+  .cta .wrap { position: relative; z-index: 1; }
+  .cta .color-wheel { margin-bottom: 30px; }
+  .cta h2 {
+    font-size: clamp(34px, 5.6vw, 66px);
+    font-weight: 800;
+    max-width: 18ch;
+    margin: 0 auto 22px;
+  }
+  .cta .csub {
+    font-size: clamp(16px, 2vw, 20px);
+    color: var(--ink-soft);
+    max-width: 54ch;
+    margin: 0 auto 40px;
+    font-weight: 500;
+  }
+  .cta .cbtns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-bottom: 28px; }
+  .cta .tg {
+    font-family: var(--mono);
+    font-size: 14px;
+    color: var(--ink-soft);
+    font-weight: 500;
+  }
+  .cta .tg a { color: var(--sun-terra); font-weight: 600; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    background: var(--ink);
+    color: rgba(251,245,233,.72);
+    padding: 50px 0;
+  }
+  .foot-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+  .foot-logo { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--cream); }
+  .foot-logo .x { color: var(--sun-orange); font-style: italic; }
+  .foot-note { font-family: var(--mono); font-size: 13px; letter-spacing: 0.03em; }
+  .foot-note a { color: var(--sun-orange); font-weight: 600; }
+
+  /* ============================================================
+     АДАПТИВ
+     ============================================================ */
+  @media (max-width: 980px) {
+    .what-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid { grid-template-columns: repeat(2, 1fr); }
+    .results-grid .metric-big { grid-column: span 2; }
+  }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .nav-cta .btn { display: none; }
+    .menu-toggle {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .menu-toggle span { width: 24px; height: 2.5px; background: var(--ink); border-radius: 2px; transition: transform .3s var(--ease), opacity .3s var(--ease); }
+    .nav.open .menu-toggle span:nth-child(1) { transform: translateY(7.5px) rotate(45deg); }
+    .nav.open .menu-toggle span:nth-child(2) { opacity: 0; }
+    .nav.open .menu-toggle span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      gap: 4px;
+      padding: 16px 28px 26px;
+      border-top: 1px solid var(--line);
+      background: rgba(242,233,216,.96);
+    }
+    .nav.open .mobile-menu { display: flex; }
+    .mobile-menu a { padding: 12px 0; font-weight: 600; font-size: 17px; border-bottom: 1px solid var(--line-soft); }
+    .mobile-menu .btn { margin-top: 14px; }
+
+    .services-grid { grid-template-columns: 1fr; }
+    .hdays { grid-template-columns: 1fr; gap: 22px; }
+    .auto-pricing { grid-template-columns: 1fr; }
+    .team-grid { grid-template-columns: 1fr; }
+
+    .timeline { grid-template-columns: 1fr; gap: 0; padding-top: 8px; }
+    .timeline::before {
+      top: 0; bottom: 0; left: 16px; right: auto;
+      width: 2.5px; height: auto;
+      background: linear-gradient(180deg, var(--sun-magenta), var(--sun-orange) 50%, var(--sun-terra));
+    }
+    .tstep { text-align: left; display: flex; gap: 18px; align-items: flex-start; padding: 14px 0; }
+    .tstep .node { margin: 0; flex: 0 0 34px; }
+    .tstep .tbody { padding-top: 2px; }
+  }
+
+  @media (max-width: 560px) {
+    body { font-size: 16px; }
+    .wrap { padding: 0 20px; }
+    .what-grid { grid-template-columns: 1fr; }
+    .results-grid { grid-template-columns: 1fr; }
+    .results-grid .metric-big { grid-column: auto; }
+    .cohort-box { flex-direction: column; align-items: flex-start; gap: 26px; }
+    .scard-hackathon .sprice { flex-direction: column; align-items: flex-start; }
+    .scard-hackathon .pnote { text-align: left; }
+    .hero-btns .btn, .cta .cbtns .btn { width: 100%; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================ ШАПКА ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#top" class="logo" aria-label="Зинин ✕ Куимов">
+      <span class="wheel" aria-hidden="true">
+        <span style="height:14px;background:#E84855"></span>
+        <span style="height:20px;background:#F6A21E"></span>
+        <span style="height:16px;background:#C85128"></span>
+        <span style="height:22px;background:#6B4E9E"></span>
+        <span style="height:12px;background:#7A8B5A"></span>
+      </span>
+      Зинин <span class="x">✕</span> Куимов
+    </a>
+
+    <nav class="nav-links" aria-label="Основная навигация">
+      <a href="#what">Что это</a>
+      <a href="#formats">Услуги</a>
+      <a href="#automation">Автоматизация</a>
+      <a href="#team">Команда</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">Расскажите о задаче →</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#what">Что это</a>
+    <a href="#formats">Услуги</a>
+    <a href="#automation">Автоматизация</a>
+    <a href="#team">Команда</a>
+    <a href="#faq">FAQ</a>
+    <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">Расскажите о задаче →</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="color-wheel" aria-hidden="true">
+      <span style="height:24px;background:#E84855;animation-delay:0s"></span>
+      <span style="height:40px;background:#F6A21E;animation-delay:.15s"></span>
+      <span style="height:30px;background:#C85128;animation-delay:.3s"></span>
+      <span style="height:46px;background:#E84855;animation-delay:.45s"></span>
+      <span style="height:22px;background:#6B4E9E;animation-delay:.6s"></span>
+      <span style="height:38px;background:#F6A21E;animation-delay:.75s"></span>
+      <span style="height:28px;background:#7A8B5A;animation-delay:.9s"></span>
+      <span style="height:44px;background:#C85128;animation-delay:1.05s"></span>
+      <span style="height:20px;background:#6B4E9E;animation-delay:1.2s"></span>
+    </div>
+
+    <div class="status">
+      <span class="dot"></span>
+      Набор открыт · Ограниченное число команд в потоке
+    </div>
+
+    <h1>
+      Корпоративный хакатон по&nbsp;ИИ, где команда собирает
+      <em class="grad-text">реальный продукт за&nbsp;два дня</em>
+    </h1>
+
+    <p class="sub">
+      Два дня радикального созидания: ваша команда строит работающий прототип
+      на&nbsp;ИИ и&nbsp;выходит обученной применять его в&nbsp;реальных задачах.
+    </p>
+
+    <div class="hero-btns">
+      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">
+        Расскажите о задаче <span class="arr">→</span>
+      </a>
+      <a class="btn btn-ghost" href="#process">Как это устроено</a>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 01 · ЧТО ЭТО ====================== -->
+<section class="what section-pad glow-edge" id="what">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">01 · Что это</span>
+      <h2>Два дня практики: команда своими руками внедряет ИИ на&nbsp;реальной задаче</h2>
+      <p class="lead">
+        На&nbsp;выходе&nbsp;— два результата сразу: рабочий продукт под вашу задачу
+        и&nbsp;команда, которая умеет строить на&nbsp;ИИ дальше уже без&nbsp;нас.
+      </p>
+    </div>
+
+    <div class="what-grid">
+      <article class="vcard">
+        <div class="ico">P</div>
+        <h3>Реальный продукт</h3>
+        <p>Работающий прототип, который можно показать и&nbsp;сразу же запустить в&nbsp;дело после хакатона.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">T</div>
+        <h3>Обученная команда</h3>
+        <p>Люди уходят с&nbsp;навыком: они уже собрали продукт руками и&nbsp;знают, как повторить это самостоятельно.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">F</div>
+        <h3>Под вашу задачу</h3>
+        <p>Берём реальную боль вашего бизнеса. Прототип закрывает конкретный процесс вашей команды.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">∞</div>
+        <h3>Дальше без&nbsp;нас</h3>
+        <p>Цель&nbsp;— автономность. После двух дней команда продолжает строить на&nbsp;ИИ самостоятельно, без&nbsp;подрядчика на&nbsp;каждый шаг.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 02 · УСЛУГИ ====================== -->
+<section class="formats section-pad" id="formats">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">02 · Услуги</span>
+      <h2>Три способа зайти в&nbsp;ИИ</h2>
+      <p class="lead">От&nbsp;личной прокачки фаундера до&nbsp;двухдневной стройки всей командой. Везде&nbsp;— реальный результат руками команды.</p>
+    </div>
+
+    <div class="services-grid">
+      <article class="scard scard-founder">
+        <span class="stag">01 · Персонально</span>
+        <h3>Обучение фаундера</h3>
+        <p>Работаем один на&nbsp;один с&nbsp;вашими задачами и&nbsp;вашими инструментами. Без чужих историй&nbsp;— только то, что нужно именно вам.</p>
+        <div class="sprice">
+          <span class="pnum">200 000 ₽</span>
+          <span class="pnote">4 занятия · лично с&nbsp;Тимом</span>
+        </div>
+      </article>
+
+      <article class="scard scard-team">
+        <span class="stag">02 · Команда / C-level</span>
+        <h3>Обучение команды</h3>
+        <p>Растим управленческую команду целиком. Темп и&nbsp;состав группы&nbsp;— под вас.</p>
+        <div class="sprice">
+          <span class="pnum">от 400 000 ₽</span>
+          <span class="pnote">до 4 человек · до 4 занятий в&nbsp;месяц</span>
+        </div>
+      </article>
+
+      <article class="scard scard-hackathon">
+        <span class="hbadge">★ Основной формат</span>
+        <span class="stag">03 · Два дня, вся команда</span>
+        <h3>Корпоративный хакатон</h3>
+        <p class="hlead">
+          Выездной или офисный интенсив на&nbsp;два дня. Команда строит на&nbsp;ИИ наперегонки со&nbsp;временем
+          и&nbsp;другими командами&nbsp;— и&nbsp;защищает результат перед своим же руководством.
+        </p>
+
+        <div class="hdays">
+          <div class="hday">
+            <span class="hday-num">День 1</span>
+            <h4>Разведка боем</h4>
+            <p>Разбираем реальные процессы команды и&nbsp;уже к&nbsp;вечеру собираем первых рабочих агентов в&nbsp;деле.</p>
+          </div>
+          <div class="hday">
+            <span class="hday-num">День 2</span>
+            <h4>Защита перед руководством</h4>
+            <p>Доводим агентов до&nbsp;рабочих инструментов и&nbsp;защищаем результат перед руководством с&nbsp;демо.</p>
+          </div>
+        </div>
+
+        <div class="hmeta">
+          <span>Командами, с&nbsp;таймингами и&nbsp;дедлайнами</span>
+          <span>Демо в&nbsp;конце каждого дня</span>
+          <span>Энергия созидания</span>
+        </div>
+
+        <div class="sprice">
+          <span class="pnum">~1 000 000 ₽</span>
+          <span class="pnote">двухдневный корпоративный хакатон · даты согласуем под вашу команду</span>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 03 · КАК ПРОХОДИТ ====================== -->
+<section class="process section-pad glow-edge" id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">03 · Как проходит</span>
+      <h2>От&nbsp;брифа до&nbsp;демо за&nbsp;два дня</h2>
+    </div>
+
+    <div class="cohort-box">
+      <div>
+        <span class="cl-kicker">Ближайший поток</span>
+        <strong>Даты согласуем под вашу команду</strong>
+      </div>
+      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">
+        Выбрать даты <span class="arr">→</span>
+      </a>
+    </div>
+
+    <div class="timeline">
+      <div class="tstep">
+        <div class="node">1</div>
+        <div class="tbody"><h4>Бриф</h4><p>Снимаем боль и&nbsp;выбираем задачу, под которую строим продукт.</p></div>
+      </div>
+      <div class="tstep">
+        <div class="node">2</div>
+        <div class="tbody"><h4>Каркас</h4><p>Собираем архитектуру и&nbsp;первый скелет на&nbsp;ИИ-инструментах.</p></div>
+      </div>
+      <div class="tstep">
+        <div class="node">3</div>
+        <div class="tbody"><h4>Стройка</h4><p>Команда строит прототип руками&nbsp;— мы рядом и&nbsp;разблокируем.</p></div>
+      </div>
+      <div class="tstep">
+        <div class="node">4</div>
+        <div class="tbody"><h4>Демо</h4><p>Защищаем работающий продукт. Видно, что собрано и&nbsp;как работает.</p></div>
+      </div>
+      <div class="tstep">
+        <div class="node">5</div>
+        <div class="tbody"><h4>Внедрение</h4><p>План, как довести прототип до&nbsp;боевого процесса без&nbsp;нас.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 04 · ЧТО АВТОМАТИЗИРУЕМ ДАЛЬШЕ ====================== -->
+<section class="automation section-pad" id="automation">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">04 · После обучения</span>
+      <h2>Что автоматизируем дальше</h2>
+      <p class="lead">Хакатон и&nbsp;обучение&nbsp;— это старт. Дальше, если нужно, доводим процесс до&nbsp;рабочего контура: агента, который реально работает в&nbsp;компании каждый день.</p>
+    </div>
+
+    <div class="what-grid">
+      <article class="vcard">
+        <div class="ico">S</div>
+        <h3>Отдел продаж</h3>
+        <p>Агент квалифицирует лида, готовит предложение и&nbsp;доводит до&nbsp;брони звонка&nbsp;— без ручного разгребания заявок.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">C</div>
+        <h3>Саппорт</h3>
+        <p>Отвечает клиентам мгновенно, эскалирует сложные случаи на&nbsp;человека и&nbsp;удерживает каждое обращение под&nbsp;контролем.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">O</div>
+        <h3>Поиск клиентов и&nbsp;маркетинг</h3>
+        <p>Ищет лидов, пишет персонально, ведёт контент&nbsp;— воронка работает, пока команда занята продуктом.</p>
+      </article>
+      <article class="vcard">
+        <div class="ico">A</div>
+        <h3>Агенты под задачу</h3>
+        <p>Под процесс, которого нет в&nbsp;коробке&nbsp;— от&nbsp;внутренней аналитики до&nbsp;сложных мультиагентных цепочек.</p>
+      </article>
+    </div>
+
+    <div class="auto-pricing">
+      <div class="auto-price-item">
+        <span class="apn">от 90 000 ₽</span>
+        <span class="apl">Агент под ключ&nbsp;— разработка и&nbsp;интеграция, финальная оценка по&nbsp;вашим процессам.</span>
+      </div>
+      <div class="auto-price-item">
+        <span class="apn">от 500 000 ₽/мес</span>
+        <span class="apl">Абонентское сопровождение&nbsp;— объём часов масштабируется под задачу.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 05 · КОМАНДА ====================== -->
+<section class="team section-pad" id="team">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">05 · Команда</span>
+      <h2>Кто работает с&nbsp;вами</h2>
+      <p class="lead">Два дня рядом с&nbsp;командой: один строит инструменты и&nbsp;кодит сам, второй ведёт людей и&nbsp;держит темп.</p>
+    </div>
+
+    <div class="team-grid">
+      <article class="person">
+        <div class="pportrait">
+          <img src="assets/zinin.jpg" alt="Тим Зинин — инженер ИИ-систем" />
+        </div>
+        <div class="pbody">
+          <div class="pname">Тим Зинин</div>
+          <div class="prole">Инженер ИИ-систем</div>
+          <p class="pbio">Строит инструменты и&nbsp;кодит сам. На&nbsp;хакатоне держит инженерную планку: показывает, как из&nbsp;идеи за&nbsp;часы вырастает работающий продукт.</p>
+        </div>
+      </article>
+
+      <article class="person">
+        <div class="pportrait pportrait-mono" aria-hidden="true">
+          <span class="mono-letters">НК</span>
+        </div>
+        <div class="pbody">
+          <div class="pname">Никита Куимов</div>
+          <div class="prole">Хакатоны, продажи и&nbsp;работа с&nbsp;компаниями</div>
+          <p class="pbio">Ведёт хакатоны и&nbsp;обучение команд. Превращает два дня в&nbsp;управляемый процесс: люди удерживаются на&nbsp;плаву, доходят до&nbsp;демо и&nbsp;уходят с&nbsp;навыком.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 06 · РЕЗУЛЬТАТЫ ====================== -->
+<section class="results section-pad glow-edge" id="results">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">06 · Результаты</span>
+      <h2>Цифры, которые остаются после</h2>
+    </div>
+
+    <div class="results-grid">
+      <div class="metric metric-big">
+        <div class="big">2</div>
+        <div class="mlabel">задокументированных корпоративных хакатона</div>
+      </div>
+      <div class="metric hproof">
+        <div class="hkicker">Хакатон 01</div>
+        <div class="hname">Вайбкодерская смена</div>
+      </div>
+      <div class="metric hproof">
+        <div class="hkicker">Хакатон 02</div>
+        <div class="hname">YouTravelMe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 07 · FAQ ====================== -->
+<section class="faq section-pad" id="faq">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="label">07 · Частые вопросы</span>
+      <h2>Коротко о&nbsp;главном</h2>
+    </div>
+
+    <div class="faq-list" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q" aria-expanded="true">
+          Сколько длится хакатон?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Два полных дня&nbsp;— от&nbsp;старта до&nbsp;демо. Первый день уходит на&nbsp;разведку процессов
+            и&nbsp;сборку первых агентов, второй&nbsp;— на&nbsp;то, чтобы довести их до&nbsp;рабочих инструментов
+            и&nbsp;защитить результат перед руководством.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Что команда получает на&nbsp;выходе?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Сразу два результата: рабочий продукт под вашу задачу и&nbsp;обученную команду, которая
+            умеет строить на&nbsp;ИИ дальше уже без&nbsp;нас.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Онлайн или офлайн?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Хакатон проводим очно&nbsp;— у&nbsp;вас в&nbsp;офисе или на&nbsp;выезде, чтобы держать групповую динамику
+            и&nbsp;темп. Персональное обучение фаундера или команды можем провести и&nbsp;онлайн.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Какого размера команда?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Под задачу: команда 4–8&nbsp;человек. Можем собрать одну команду или развести несколько параллельных групп.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Нужна ли подготовка?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Всё нужное даём на&nbsp;месте: вводим в&nbsp;инструменты прямо на&nbsp;старте и&nbsp;ведём команду до&nbsp;демо.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Сколько стоит?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Обучение фаундера&nbsp;— 200 000&nbsp;₽ за&nbsp;четыре занятия. Обучение команды или C-level&nbsp;—
+            от&nbsp;400 000&nbsp;₽, до&nbsp;четырёх человек и&nbsp;до&nbsp;четырёх занятий в&nbsp;месяц. Корпоративный
+            хакатон на&nbsp;два дня&nbsp;— около 1 000 000&nbsp;₽. Точную сумму считаем под объём задачи и&nbsp;график на&nbsp;звонке.
+            <a href="https://calendly.com/timzinin" target="_blank" rel="noopener" style="color:var(--sun-terra);font-weight:600;">Выберите слот&nbsp;→</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" aria-expanded="false">
+          Хакатон&nbsp;— это правда рабочий инструмент или просто красивая презентация?
+          <span class="faq-icon" aria-hidden="true"></span>
+        </button>
+        <div class="faq-a">
+          <div class="faq-a-inner">
+            Да. Первый день&nbsp;— разведка процессов и&nbsp;сборка первых агентов руками команды. Второй&nbsp;—
+            доведение их до&nbsp;рабочих инструментов и&nbsp;защита перед руководством с&nbsp;демо.
+            Уходите с&nbsp;тем, что можно включить в&nbsp;понедельник.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====================== 07 · ФИНАЛЬНЫЙ CTA ====================== -->
+<section class="cta section-pad">
+  <div class="wrap">
+    <div class="color-wheel" aria-hidden="true">
+      <span style="height:22px;background:#E84855;animation-delay:0s"></span>
+      <span style="height:38px;background:#F6A21E;animation-delay:.15s"></span>
+      <span style="height:28px;background:#C85128;animation-delay:.3s"></span>
+      <span style="height:44px;background:#6B4E9E;animation-delay:.45s"></span>
+      <span style="height:24px;background:#7A8B5A;animation-delay:.6s"></span>
+      <span style="height:40px;background:#F6A21E;animation-delay:.75s"></span>
+      <span style="height:30px;background:#E84855;animation-delay:.9s"></span>
+    </div>
+
+    <h2>Соберите <span class="grad-text">продукт за&nbsp;два дня</span> вместе с&nbsp;вашей командой</h2>
+    <p class="csub">
+      Расскажите задачу&nbsp;— подберём формат и&nbsp;ближайший поток. Тридцать минут на&nbsp;звонке, и&nbsp;дальше&nbsp;— стройка.
+    </p>
+
+    <div class="cbtns">
+      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">
+        Расскажите о задаче <span class="arr">→</span>
+      </a>
+    </div>
+
+    <p class="tg">Или напишите в&nbsp;Telegram&nbsp;— <a href="https://t.me/timzinin" target="_blank" rel="noopener">@timzinin</a></p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-logo">Зинин <span class="x">✕</span> Куимов</div>
+    <div class="foot-note">
+      Часть сети Zinin AI · <a href="https://calendly.com/timzinin" target="_blank" rel="noopener">Подать заявку</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  /* ---------- Шапка: тень при скролле ---------- */
+  var nav = document.getElementById("nav");
+  function onScroll() {
+    if (window.scrollY > 12) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+
+  /* ---------- Мобильное меню ---------- */
+  var toggle = document.getElementById("menuToggle");
+  var mobileMenu = document.getElementById("mobileMenu");
+  if (toggle) {
+    toggle.addEventListener("click", function () {
+      var open = nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    mobileMenu.querySelectorAll("a").forEach(function (a) {
+      a.addEventListener("click", function () {
+        nav.classList.remove("open");
+        toggle.setAttribute("aria-expanded", "false");
+      });
+    });
+  }
+
+  /* ---------- FAQ-аккордеон ---------- */
+  var faqItems = Array.prototype.slice.call(document.querySelectorAll(".faq-item"));
+
+  function setOpen(item, open) {
+    var ans = item.querySelector(".faq-a");
+    var btn = item.querySelector(".faq-q");
+    if (open) {
+      item.classList.add("open");
+      ans.style.maxHeight = ans.scrollHeight + "px";
+      btn.setAttribute("aria-expanded", "true");
+    } else {
+      item.classList.remove("open");
+      ans.style.maxHeight = "0px";
+      btn.setAttribute("aria-expanded", "false");
+    }
+  }
+
+  faqItems.forEach(function (item) {
+    var btn = item.querySelector(".faq-q");
+    btn.addEventListener("click", function () {
+      var isOpen = item.classList.contains("open");
+      // Закрываем все
+      faqItems.forEach(function (it) { setOpen(it, false); });
+      // Открываем кликнутый, если он был закрыт
+      if (!isOpen) setOpen(item, true);
+    });
+  });
+
+  // Инициализация первого открытого пункта (корректная высота)
+  window.addEventListener("load", function () {
+    faqItems.forEach(function (item) {
+      if (item.classList.contains("open")) setOpen(item, true);
+    });
+  });
+  // Пересчёт высоты открытого пункта при ресайзе
+  var resizeT;
+  window.addEventListener("resize", function () {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function () {
+      var open = document.querySelector(".faq-item.open .faq-a");
+      if (open) open.style.maxHeight = open.scrollHeight + "px";
+    }, 120);
+  });
+})();
+</script>
+
+</body>
+</html>

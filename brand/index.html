@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex" />
+<title>Зинин ✕ Куимов — Брендбук · «Плайя на закате»</title>
+<meta name="description" content="Брендбук co-brand бренда Зинин ✕ Куимов — практика корпоративных хакатонов по ИИ. Дизайн-направление «Плайя на закате»: тёплая светлая палитра, цветовое колесо, энергия двух дней созидания." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap&subset=cyrillic,cyrillic-ext,latin" rel="stylesheet" />
+
+<style>
+  /* ============================================================
+     ЗИНИН ✕ КУИМОВ — БРЕНДБУК · «Плайя на закате»
+     Та же тёплая светлая дизайн-система, что и лендинг.
+     Палитра песок/крем/глина + закат, цветовое колесо.
+     ============================================================ */
+
+  :root {
+    /* Базовая тёплая палитра */
+    --sand:        #F2E9D8;   /* фон */
+    --cream:       #FBF5E9;   /* панель */
+    --clay:        #ECE0C9;   /* панель+ */
+    --ink:         #2A2018;   /* тёпло-чёрный текст */
+    --ink-soft:    #6B5D4D;   /* приглушённый текст */
+    --ink-faint:   #9A8B76;   /* очень тихий текст / лейблы */
+    --line:        #E2D4B8;   /* тонкие линии */
+    --line-soft:   #EBE0CC;
+
+    /* Закатный градиент */
+    --sun-magenta: #E84855;
+    --sun-orange:  #F6A21E;
+    --sun-terra:   #C85128;
+    --sunset: linear-gradient(100deg, #E84855 0%, #F6A21E 52%, #C85128 100%);
+
+    /* Дополнительные акценты */
+    --violet:      #6B4E9E;   /* дусковый фиолет */
+    --violet-deep: #543C82;
+    --sage:        #7A8B5A;   /* шалфей */
+
+    /* Типографика */
+    --serif: "Playfair Display", Georgia, serif;
+    --sans:  "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --mono:  "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+    /* Ритм */
+    --maxw: 1160px;
+    --radius: 22px;
+    --radius-sm: 14px;
+    --pad-section: clamp(58px, 8vw, 116px);
+    --ease: cubic-bezier(.22, .61, .36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+  body {
+    background: var(--sand);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 17px;
+    line-height: 1.62;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+  }
+
+  ::selection { background: rgba(232, 72, 85, .22); color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+
+  /* ---------- Утилиты ---------- */
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  .label {
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--sun-terra);
+    display: inline-flex;
+    align-items: center;
+    gap: 11px;
+    margin-bottom: 22px;
+  }
+  .label::before {
+    content: "";
+    width: 26px;
+    height: 2px;
+    background: var(--sunset);
+    border-radius: 2px;
+  }
+
+  .grad-text {
+    background: var(--sunset);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  h1, h2, h3, h4 { font-family: var(--serif); font-weight: 700; line-height: 1.06; letter-spacing: -0.015em; }
+
+  /* Цветовое колесо — набор вертикальных цветных полос */
+  .color-wheel {
+    display: inline-flex;
+    align-items: flex-end;
+    gap: 6px;
+    padding: 16px 22px;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 14px 40px -22px rgba(200, 81, 40, .4);
+  }
+  .color-wheel span {
+    width: 9px;
+    border-radius: 5px;
+    display: block;
+    animation: bar-pulse 3.4s var(--ease) infinite;
+  }
+  @keyframes bar-pulse {
+    0%, 100% { transform: scaleY(1); }
+    50%      { transform: scaleY(1.18); }
+  }
+
+  /* ============================================================
+     ШАПКА-НАВИГАЦИЯ ПО РАЗДЕЛАМ
+     ============================================================ */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(242, 233, 216, .82);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .4s var(--ease), background .4s var(--ease);
+  }
+  .nav.scrolled { border-bottom-color: var(--line); background: rgba(242, 233, 216, .94); }
+  .nav-inner {
+    height: 66px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 19px;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+  }
+  .logo .wheel { display: inline-flex; gap: 2.5px; align-items: flex-end; height: 20px; }
+  .logo .wheel span { width: 3.5px; border-radius: 2px; display: block; }
+  .logo .x { color: var(--sun-terra); font-style: italic; margin: 0 1px; }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .08em;
+  }
+  .nav-links a {
+    color: var(--ink-soft);
+    padding: 7px 11px;
+    border-radius: 100px;
+    transition: color .25s var(--ease), background .25s var(--ease);
+  }
+  .nav-links a:hover { color: var(--ink); background: var(--clay); }
+
+  /* ============================================================
+     00 · ОБЛОЖКА
+     ============================================================ */
+  .cover {
+    position: relative;
+    padding: clamp(56px, 9vw, 118px) 0 clamp(56px, 9vw, 110px);
+    overflow: hidden;
+    border-bottom: 1px solid var(--line);
+  }
+  .cover::before {
+    content: "";
+    position: absolute;
+    top: -24%;
+    left: 56%;
+    transform: translateX(-50%);
+    width: 1000px;
+    max-width: 140vw;
+    height: 660px;
+    background: radial-gradient(ellipse 60% 60% at 50% 40%,
+        rgba(246, 162, 30, .30) 0%,
+        rgba(232, 72, 85, .15) 38%,
+        rgba(242, 233, 216, 0) 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .cover .wrap { position: relative; z-index: 1; }
+  .cover .color-wheel { height: 70px; margin-bottom: 36px; }
+  .cover .kicker {
+    font-family: var(--mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 22px;
+  }
+  .cover h1 {
+    font-size: clamp(46px, 9vw, 108px);
+    font-weight: 800;
+    line-height: 1;
+    max-width: 14ch;
+  }
+  .cover h1 .x { color: var(--sun-terra); font-style: italic; font-weight: 700; }
+  .cover .csub {
+    margin-top: 26px;
+    font-size: clamp(17px, 2.2vw, 22px);
+    color: var(--ink-soft);
+    font-weight: 500;
+    max-width: 56ch;
+    line-height: 1.5;
+  }
+  .cover .csub em { font-family: var(--serif); font-style: italic; font-weight: 600; color: var(--ink); }
+  .cover-meta {
+    margin-top: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .cover-meta .pill {
+    font-family: var(--mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 100px;
+    padding: 9px 17px;
+  }
+
+  /* ============================================================
+     ОБЩЕЕ ДЛЯ СЕКЦИЙ
+     ============================================================ */
+  section.block { position: relative; padding: var(--pad-section) 0; border-bottom: 1px solid var(--line); }
+  .block:nth-of-type(even) { background: var(--clay); }
+  .block:nth-of-type(odd)  { background: var(--sand); }
+
+  .glow-edge::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 70% 50% at 100% 0%,
+        rgba(246, 162, 30, .12) 0%, rgba(242,233,216,0) 55%);
+    pointer-events: none;
+  }
+
+  .section-head { max-width: 760px; margin-bottom: 48px; }
+  .section-head h2 { font-size: clamp(28px, 4.4vw, 48px); font-weight: 700; }
+  .section-head .lead {
+    margin-top: 20px;
+    font-size: clamp(16px, 1.9vw, 19px);
+    color: var(--ink-soft);
+    font-weight: 500;
+    max-width: 62ch;
+  }
+
+  /* ---------- Сетки ---------- */
+  .grid { display: grid; gap: 18px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+
+  /* Универсальная карточка */
+  .card {
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform .4s var(--ease), box-shadow .4s var(--ease), border-color .4s var(--ease);
+  }
+  .card.hover:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 26px 50px -28px rgba(120, 80, 40, .45);
+  }
+  .card .pad { padding: 26px; }
+
+  /* Списки правил */
+  ul.rules { list-style: none; display: flex; flex-direction: column; gap: 13px; }
+  ul.rules li {
+    font-size: 15.5px;
+    color: var(--ink-soft);
+    font-weight: 500;
+    line-height: 1.55;
+    padding-left: 26px;
+    position: relative;
+  }
+  ul.rules li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: .62em;
+    width: 14px; height: 2.5px;
+    border-radius: 2px;
+    background: var(--sunset);
+  }
+  ul.rules.no li::before { background: var(--ink-faint); }
+  ul.rules b { color: var(--ink); font-weight: 700; }
+
+  /* ============================================================
+     01 · ЛОГОТИП
+     ============================================================ */
+  .logo-stage {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    position: relative;
+  }
+  .logo-stage .lockup {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: clamp(26px, 4.2vw, 40px);
+    letter-spacing: -0.01em;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap;
+  }
+  .logo-stage .lockup .x { color: var(--sun-terra); font-style: italic; }
+  .logo-stage .wheel-mark {
+    display: inline-flex; gap: 4px; align-items: flex-end; height: 40px;
+  }
+  .logo-stage .wheel-mark span { width: 6px; border-radius: 3px; display: block; }
+
+  .stage-cream { background: var(--cream); }
+  .stage-sand  { background: var(--sand); }
+  .stage-panel { background: var(--clay); }
+  .stage-glow {
+    background: radial-gradient(ellipse 60% 60% at 50% 120%, rgba(246,162,30,.26), transparent 70%), var(--cream);
+  }
+  .stage-cap {
+    position: absolute; left: 22px; bottom: 16px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 500;
+  }
+
+  /* Защитное поле */
+  .clearspace {
+    position: relative;
+    background: var(--cream);
+    border: 1px dashed var(--line);
+    border-radius: var(--radius-sm);
+    padding: 46px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .clearspace .frame {
+    border: 2px solid rgba(200,81,40,.35);
+    border-radius: 10px;
+    padding: 26px 30px;
+    position: relative;
+  }
+  .clearspace .frame .lockup {
+    font-family: var(--serif); font-weight: 700; font-size: 26px;
+    display: flex; align-items: center; gap: 11px; white-space: nowrap;
+  }
+  .clearspace .frame .lockup .x { color: var(--sun-terra); font-style: italic; }
+  .clearspace .frame .x-pad { position: absolute; font-family: var(--mono); font-size: 10px; color: var(--sun-terra); letter-spacing: .1em; }
+  .clearspace .frame .x-pad.top { top: -20px; left: 50%; transform: translateX(-50%); }
+  .clearspace .frame .x-pad.side { left: -34px; top: 50%; transform: translateY(-50%) rotate(-90deg); }
+
+  /* ============================================================
+     02 · ПАЛИТРА
+     ============================================================ */
+  .sw .chip { height: 116px; border-bottom: 1px solid var(--line); position: relative; }
+  .sw .meta { padding: 16px 18px 18px; }
+  .sw .nm { font-family: var(--sans); font-weight: 700; font-size: 15px; }
+  .sw .use { font-size: 13px; color: var(--ink-soft); font-weight: 500; margin-top: 2px; }
+  .sw .hex { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); margin-top: 8px; letter-spacing: .03em; }
+  .chip-border { box-shadow: inset 0 0 0 1px var(--line); }
+
+  /* широкая карта градиента */
+  .grad-card {
+    grid-column: span 2;
+    background: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    overflow: hidden;
+  }
+  .grad-card .chip { height: 116px; background: var(--sunset); border-bottom: 1px solid var(--line); }
+  .grad-card .meta { padding: 16px 18px 18px; display: flex; justify-content: space-between; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .grad-card .meta .nm { font-weight: 700; font-size: 15px; }
+  .grad-card .meta .hex { font-family: var(--mono); font-size: 12px; color: var(--ink-faint); letter-spacing: .03em; }
+
+  .accent-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .accent-chips .ac {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: 12.5px; font-weight: 500;
+    background: var(--cream); border: 1px solid var(--line);
+    border-radius: 100px; padding: 8px 15px 8px 9px; color: var(--ink-soft);
+  }
+  .accent-chips .ac .dot { width: 18px; height: 18px; border-radius: 50%; }
+  .accent-chips .ac b { color: var(--ink); font-weight: 700; }
+
+  /* ============================================================
+     03 · ТИПОГРАФИКА
+     ============================================================ */
+  .type-row {
+    border-top: 1px solid var(--line);
+    padding: 26px 0;
+    display: flex; justify-content: space-between; align-items: baseline;
+    gap: 24px; flex-wrap: wrap;
+  }
+  .type-row:last-of-type { border-bottom: 1px solid var(--line); }
+  .type-row .meta {
+    font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint);
+    white-space: nowrap; letter-spacing: .05em; font-weight: 500;
+  }
+  .type-row .demo-serif { font-family: var(--serif); font-weight: 700; font-size: clamp(30px, 5.4vw, 56px); }
+  .type-row .demo-sans  { font-family: var(--sans);  font-weight: 600; font-size: clamp(19px, 3vw, 28px); }
+  .type-row .demo-mono  { font-family: var(--mono);  font-weight: 600; font-size: clamp(15px, 2.3vw, 22px); letter-spacing: .04em; }
+
+  /* типо-шкала */
+  .scale { margin-top: 36px; display: flex; flex-direction: column; gap: 4px; }
+  .scale .row {
+    display: flex; align-items: baseline; gap: 22px;
+    padding: 18px 0; border-bottom: 1px solid var(--line-soft);
+  }
+  .scale .row:last-child { border-bottom: none; }
+  .scale .tag {
+    flex: 0 0 130px;
+    font-family: var(--mono); font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--ink-faint); font-weight: 600;
+  }
+  .scale .ex-h1 { font-family: var(--serif); font-weight: 800; font-size: clamp(30px,5vw,52px); line-height: 1.04; }
+  .scale .ex-h2 { font-family: var(--serif); font-weight: 700; font-size: clamp(24px,3.6vw,38px); line-height: 1.08; }
+  .scale .ex-body { font-family: var(--sans); font-weight: 500; font-size: 17px; color: var(--ink-soft); max-width: 52ch; }
+  .scale .ex-label { font-family: var(--mono); font-weight: 600; font-size: 12.5px; letter-spacing: .22em; text-transform: uppercase; color: var(--sun-terra); }
+
+  /* ============================================================
+     04 · КОМПОНЕНТЫ
+     ============================================================ */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    font-family: var(--sans); font-weight: 700; font-size: 16px; letter-spacing: -0.01em;
+    padding: 15px 26px; border-radius: 100px; border: none; cursor: pointer;
+    transition: transform .35s var(--ease), box-shadow .35s var(--ease), background .3s var(--ease), color .3s var(--ease);
+    white-space: nowrap;
+  }
+  .btn-primary {
+    color: #fff; background: var(--sunset);
+    box-shadow: 0 10px 26px -10px rgba(200, 81, 40, .55), inset 0 1px 0 rgba(255,255,255,.25);
+  }
+  .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 38px -12px rgba(200, 81, 40, .7), inset 0 1px 0 rgba(255,255,255,.3); }
+  .btn-ghost { color: var(--ink); background: transparent; border: 1.5px solid var(--ink); }
+  .btn-ghost:hover { transform: translateY(-3px); background: var(--ink); color: var(--cream); }
+  .btn .arr { transition: transform .35s var(--ease); }
+  .btn:hover .arr { transform: translateX(4px); }
+
+  .comp-label { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-faint); font-weight: 600; margin-bottom: 18px; }
+
+  /* бейдж хакатона */
+  .hack-badge {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    letter-spacing: .16em; text-transform: uppercase; color: var(--sun-terra);
+    background: var(--cream); border: 1px solid var(--line);
+    border-radius: 100px; padding: 9px 16px;
+  }
+  .hack-badge .pt {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--sun-magenta);
+    box-shadow: 0 0 0 0 rgba(232,72,85,.5); animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%   { box-shadow: 0 0 0 0 rgba(232, 72, 85, .5); }
+    70%  { box-shadow: 0 0 0 9px rgba(232, 72, 85, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(232, 72, 85, 0); }
+  }
+
+  /* теги форматов */
+  .fmt-tags { display: flex; flex-wrap: wrap; gap: 10px; }
+  .fmt-tag {
+    font-family: var(--mono); font-size: 12px; font-weight: 600;
+    letter-spacing: .06em; padding: 8px 15px; border-radius: 100px;
+  }
+  .ft-sun   { background: rgba(246,162,30,.16); color: var(--sun-terra); border: 1px solid rgba(246,162,30,.4); }
+  .ft-violet{ background: rgba(107,78,158,.12); color: var(--violet); border: 1px solid rgba(107,78,158,.32); }
+  .ft-sage  { background: rgba(122,139,90,.16); color: var(--sage); border: 1px solid rgba(122,139,90,.4); }
+  .ft-ink   { background: var(--clay); color: var(--ink-soft); border: 1px solid var(--line); }
+
+  /* мини демо-карточки компонентов */
+  .demo-card-cream { background: var(--cream); border: 1px solid var(--line); }
+  .demo-card-sun { background: var(--sunset); color: #fff; box-shadow: 0 22px 50px -26px rgba(200,81,40,.7); }
+  .demo-card-violet { background: var(--violet); color: #fff; box-shadow: 0 22px 50px -28px rgba(107,78,158,.7); }
+  .demo-card .tag { font-family: var(--mono); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; opacity: .8; }
+  .demo-card h4 { font-size: 22px; margin-top: 10px; }
+  .demo-card p { font-size: 14px; margin-top: 8px; font-weight: 500; opacity: .92; }
+  .demo-card-cream p { color: var(--ink-soft); }
+
+  /* мини-таймер */
+  .mini-timer {
+    display: flex; align-items: flex-start; gap: 16px; font-family: var(--mono);
+  }
+  .mini-timer .unit { text-align: center; min-width: 56px; }
+  .mini-timer .num {
+    font-size: clamp(34px, 6vw, 50px); font-weight: 700; line-height: 1;
+    background: var(--sunset); -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent; font-variant-numeric: tabular-nums;
+  }
+  .mini-timer .cap { display: block; margin-top: 9px; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); font-weight: 500; }
+  .mini-timer .sep { font-size: clamp(28px,5vw,44px); color: var(--line); line-height: 1; margin-top: 2px; }
+
+  /* ============================================================
+     05 · АТМОСФЕРА
+     ============================================================ */
+  .mood-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .mood {
+    border-radius: var(--radius); padding: 32px 30px; min-height: 196px;
+    display: flex; flex-direction: column; justify-content: flex-end; position: relative; overflow: hidden;
+  }
+  .mood .mtag { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; font-weight: 600; opacity: .85; margin-bottom: 12px; }
+  .mood h3 { font-size: 24px; font-weight: 700; }
+  .mood p { margin-top: 10px; font-size: 14.5px; font-weight: 500; line-height: 1.5; }
+  .mood-1 { background: radial-gradient(ellipse 80% 70% at 50% 0%, rgba(246,162,30,.40), transparent 70%), var(--cream); border: 1px solid var(--line); color: var(--ink); }
+  .mood-1 p { color: var(--ink-soft); }
+  .mood-2 { background: var(--sunset); color: #fff; box-shadow: 0 26px 56px -28px rgba(200,81,40,.7); }
+  .mood-2 p { color: rgba(255,255,255,.92); }
+  .mood-3 { background: var(--violet); color: #fff; box-shadow: 0 22px 50px -28px rgba(107,78,158,.7); }
+  .mood-3 p { color: rgba(255,255,255,.9); }
+  .mood-4 { background: var(--clay); border: 1px solid var(--line); color: var(--ink); }
+  .mood-4 p { color: var(--ink-soft); }
+  .mood-4 .wheel-deco { display: inline-flex; gap: 5px; align-items: flex-end; height: 40px; margin-bottom: 14px; }
+  .mood-4 .wheel-deco span { width: 7px; border-radius: 4px; display: block; }
+
+  /* ============================================================
+     06 · ФОТОГРАФИЯ И ГРАФИКА
+     ============================================================ */
+  .board-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 12px; }
+  .board {
+    aspect-ratio: 4/3; border-radius: var(--radius-sm); position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 16px; border: 1px solid var(--line);
+  }
+  .board span { font-family: var(--mono); font-size: 11px; letter-spacing: .06em; font-weight: 500; position: relative; z-index: 1; }
+  .b1 { background: linear-gradient(150deg, #F6A21E, #E84855 60%, #C85128); }
+  .b1 span { color: rgba(255,255,255,.92); }
+  .b2 { background: linear-gradient(160deg, #FBF5E9, #F2E9D8 50%, #ECE0C9); }
+  .b2 span { color: var(--ink-soft); }
+  .b3 { background: linear-gradient(150deg, #F6A21E 0%, #C85128 70%, #6B4E9E 130%); }
+  .b3 span { color: rgba(255,255,255,.92); }
+  .b4 { background: radial-gradient(ellipse 100% 80% at 30% 20%, rgba(246,162,30,.55), transparent 60%), linear-gradient(150deg, #ECE0C9, #E2D4B8); }
+  .b4 span { color: var(--ink); }
+  .b5 { background: linear-gradient(150deg, #7A8B5A, #F6A21E 130%); }
+  .b5 span { color: rgba(255,255,255,.95); }
+  .b6 { background: linear-gradient(120deg, #E84855, #F6A21E 45%, #FBF5E9 110%); }
+  .b6 span { color: rgba(42,32,24,.85); }
+
+  /* ============================================================
+     07 · ТОН ГОЛОСА
+     ============================================================ */
+  .voice-phrases { display: flex; flex-direction: column; gap: 12px; }
+  .voice-phrases .ph {
+    font-family: var(--serif); font-style: italic; font-weight: 600;
+    font-size: clamp(18px, 2.6vw, 26px); line-height: 1.25; color: var(--ink);
+    padding-left: 22px; border-left: 3px solid; border-image: var(--sunset) 1;
+  }
+  .vox { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 34px; }
+  .vox .col-head {
+    font-family: var(--mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700;
+    margin-bottom: 16px; display: flex; align-items: center; gap: 9px;
+  }
+  .vox .say .col-head { color: var(--sun-terra); }
+  .vox .avoid .col-head { color: var(--ink-faint); }
+  .vox .col-head .mark { font-size: 15px; }
+
+  /* ============================================================
+     ФУТЕР
+     ============================================================ */
+  footer {
+    background: var(--ink);
+    color: rgba(251,245,233,.72);
+    padding: 50px 0;
+  }
+  .foot-inner { display: flex; align-items: center; justify-content: space-between; gap: 22px; flex-wrap: wrap; }
+  .foot-logo { font-family: var(--serif); font-size: 19px; font-weight: 700; color: var(--cream); display: flex; align-items: center; gap: 10px; }
+  .foot-logo .x { color: var(--sun-orange); font-style: italic; }
+  .foot-note { font-family: var(--mono); font-size: 13px; letter-spacing: 0.03em; }
+  .foot-note a { color: var(--sun-orange); font-weight: 600; }
+
+  .ph-note {
+    font-family: var(--mono); font-size: 12px; color: var(--ink-faint);
+    margin-top: 18px; line-height: 1.7; letter-spacing: .02em;
+  }
+
+  /* ============================================================
+     АДАПТИВ
+     ============================================================ */
+  @media (max-width: 960px) {
+    .g4 { grid-template-columns: repeat(2, 1fr); }
+    .g3 { grid-template-columns: repeat(2, 1fr); }
+    .board-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 760px) {
+    .nav-links { display: none; }
+    .nav-inner { height: 60px; }
+    .g2, .g3, .g4 { grid-template-columns: 1fr; }
+    .grad-card { grid-column: span 1; }
+    .mood-grid { grid-template-columns: 1fr; }
+    .vox { grid-template-columns: 1fr; }
+    .board-grid { grid-template-columns: 1fr 1fr; }
+    .scale .row { flex-direction: column; gap: 8px; }
+    .scale .tag { flex: none; }
+  }
+  @media (max-width: 480px) {
+    .wrap { padding: 0 20px; }
+    body { font-size: 16px; }
+    .board-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation: none !important; scroll-behavior: auto; }
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================ ШАПКА ============================ -->
+<header class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a href="#cover" class="logo" aria-label="Зинин ✕ Куимов — брендбук">
+      <span class="wheel" aria-hidden="true">
+        <span style="height:12px;background:#E84855"></span>
+        <span style="height:18px;background:#F6A21E"></span>
+        <span style="height:14px;background:#C85128"></span>
+        <span style="height:20px;background:#6B4E9E"></span>
+        <span style="height:10px;background:#7A8B5A"></span>
+      </span>
+      Зинин <span class="x">✕</span> Куимов
+    </a>
+
+    <nav class="nav-links" aria-label="Разделы брендбука">
+      <a href="#logo">01</a>
+      <a href="#palette">02</a>
+      <a href="#type">03</a>
+      <a href="#components">04</a>
+      <a href="#mood">05</a>
+      <a href="#photo">06</a>
+      <a href="#voice">07</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ 00 · ОБЛОЖКА ============================ -->
+<section class="cover" id="cover">
+  <div class="wrap">
+    <div class="color-wheel" aria-hidden="true">
+      <span style="height:26px;background:#E84855;animation-delay:0s"></span>
+      <span style="height:44px;background:#F6A21E;animation-delay:.15s"></span>
+      <span style="height:32px;background:#C85128;animation-delay:.3s"></span>
+      <span style="height:50px;background:#E84855;animation-delay:.45s"></span>
+      <span style="height:24px;background:#6B4E9E;animation-delay:.6s"></span>
+      <span style="height:42px;background:#F6A21E;animation-delay:.75s"></span>
+      <span style="height:30px;background:#7A8B5A;animation-delay:.9s"></span>
+      <span style="height:48px;background:#C85128;animation-delay:1.05s"></span>
+      <span style="height:22px;background:#6B4E9E;animation-delay:1.2s"></span>
+    </div>
+
+    <div class="kicker">Брендбук · v1</div>
+
+    <h1>Зинин <span class="x">✕</span> Куимов</h1>
+
+    <p class="csub">
+      Дизайн-направление <em>«Плайя на закате»</em> · co-brand практика
+      корпоративных хакатонов по&nbsp;ИИ. Тёплый светлый язык бренда:
+      песок, закат, цветовое колесо и&nbsp;энергия двух дней созидания.
+    </p>
+
+    <div class="cover-meta">
+      <span class="pill">● Палитра песок / закат</span>
+      <span class="pill">Playfair · Manrope · JetBrains Mono</span>
+      <span class="pill">Часть сети Zinin AI</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 01 · ЛОГОТИП ============================ -->
+<section class="block glow-edge" id="logo">
+  <div class="wrap">
+    <span class="label">01 · Логотип</span>
+    <div class="section-head">
+      <h2>Локап и&nbsp;цветовое колесо</h2>
+      <p class="lead">
+        Знак&nbsp;— словесный локап двух фамилий через&nbsp;✕ и&nbsp;элемент цветового
+        колеса: набор вертикальных цветных полос как след спектра. ✕&nbsp;— единственный
+        носитель акцента в&nbsp;тексте знака.
+      </p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card hover">
+        <div class="logo-stage stage-cream">
+          <span class="wheel-mark" aria-hidden="true">
+            <span style="height:18px;background:#E84855"></span>
+            <span style="height:30px;background:#F6A21E"></span>
+            <span style="height:22px;background:#C85128"></span>
+            <span style="height:34px;background:#6B4E9E"></span>
+            <span style="height:16px;background:#7A8B5A"></span>
+          </span>
+          <span class="lockup">Зинин <span class="x">✕</span> Куимов</span>
+          <span class="stage-cap">Основной · на&nbsp;креме</span>
+        </div>
+      </div>
+      <div class="card hover">
+        <div class="logo-stage stage-sand">
+          <span class="lockup">Зинин <span class="x">✕</span> Куимов</span>
+          <span class="stage-cap">На&nbsp;песке (фон)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:18px;">
+      <div class="card hover">
+        <div class="logo-stage stage-glow">
+          <span class="lockup" style="font-size:clamp(24px,3.8vw,34px);">Зинин <span class="x">✕</span> Куимов</span>
+          <span class="stage-cap">На&nbsp;тёплом свечении</span>
+        </div>
+      </div>
+      <div class="clearspace">
+        <div class="frame">
+          <span class="x-pad top">✕</span>
+          <span class="x-pad side">✕</span>
+          <span class="lockup">Зинин <span class="x">✕</span> Куимов</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid g2" style="margin-top:30px;">
+      <div>
+        <div class="comp-label">Правила</div>
+        <ul class="rules">
+          <li>Локап набирается <b>Playfair Display</b>, естественный регистр имён, разделитель&nbsp;<b>✕</b> в&nbsp;терракоте&nbsp;<b style="color:var(--sun-terra)">#C85128</b>, курсивом.</li>
+          <li><b>Защитное поле</b>&nbsp;— по&nbsp;высоте знака&nbsp;✕ со&nbsp;всех сторон. Внутри поля&nbsp;— никаких других элементов.</li>
+          <li><b>Колесо</b> (вертикальные полосы) идёт перед локапом или отдельным маркером; цвета&nbsp;— строго из&nbsp;палитры.</li>
+          <li>Минимальная высота локапа&nbsp;— 18px на&nbsp;экране, чтобы&nbsp;✕ и&nbsp;буквы оставались читаемыми.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="comp-label">Нельзя</div>
+        <ul class="rules no">
+          <li>Искажать пропорции, сжимать или растягивать локап.</li>
+          <li>Менять цвет&nbsp;✕ или красить весь знак в&nbsp;один цвет.</li>
+          <li>Ставить на&nbsp;тёмный фон, пёстрое фото или контрастный цвет вне палитры.</li>
+          <li>Заменять&nbsp;✕ на&nbsp;×, x, +, «и» или «&amp;».</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 02 · ПАЛИТРА ============================ -->
+<section class="block" id="palette">
+  <div class="wrap">
+    <span class="label">02 · Палитра</span>
+    <div class="section-head">
+      <h2>Тёплый песок и&nbsp;закат</h2>
+      <p class="lead">
+        Основа&nbsp;— три тёплых нейтрали (песок, крем, глина) и&nbsp;тёпло-чёрный текст.
+        Энергию даёт закатный градиент; дусковый фиолет и&nbsp;шалфей&nbsp;— редкие
+        вторичные акценты для&nbsp;форматов и&nbsp;ролей.
+      </p>
+    </div>
+
+    <div class="grid g4">
+      <div class="card sw"><div class="chip chip-border" style="background:#F2E9D8;"></div><div class="meta"><div class="nm">Песок</div><div class="use">Фон страниц</div><div class="hex">#F2E9D8</div></div></div>
+      <div class="card sw"><div class="chip chip-border" style="background:#FBF5E9;"></div><div class="meta"><div class="nm">Крем</div><div class="use">Панель / карточка</div><div class="hex">#FBF5E9</div></div></div>
+      <div class="card sw"><div class="chip chip-border" style="background:#ECE0C9;"></div><div class="meta"><div class="nm">Глина</div><div class="use">Панель+ / секции</div><div class="hex">#ECE0C9</div></div></div>
+      <div class="card sw"><div class="chip" style="background:#2A2018;"></div><div class="meta"><div class="nm">Тёпло-чёрный</div><div class="use">Текст / футер</div><div class="hex">#2A2018</div></div></div>
+    </div>
+
+    <div class="grid g4" style="margin-top:18px;">
+      <div class="grad-card">
+        <div class="chip"></div>
+        <div class="meta">
+          <div><div class="nm">Закатный градиент</div><div class="use" style="margin-top:2px;">Кнопки, акценты, заголовки-grad</div></div>
+          <div class="hex">#E84855 → #F6A21E → #C85128</div>
+        </div>
+      </div>
+      <div class="card sw"><div class="chip" style="background:#6B4E9E;"></div><div class="meta"><div class="nm">Дусковый фиолет</div><div class="use">Вторичный акцент</div><div class="hex">#6B4E9E</div></div></div>
+      <div class="card sw"><div class="chip" style="background:#7A8B5A;"></div><div class="meta"><div class="nm">Шалфей</div><div class="use">Вторичный акцент</div><div class="hex">#7A8B5A</div></div></div>
+    </div>
+
+    <div class="accent-chips">
+      <span class="ac"><span class="dot" style="background:#E84855;"></span> <b>Магента</b> #E84855</span>
+      <span class="ac"><span class="dot" style="background:#F6A21E;"></span> <b>Оранж</b> #F6A21E</span>
+      <span class="ac"><span class="dot" style="background:#C85128;"></span> <b>Терракота</b> #C85128</span>
+    </div>
+
+    <p class="ph-note">Три ступени заката читаются и&nbsp;отдельными цветами&nbsp;— магента / оранж / терракота. Закат&nbsp;— главный носитель энергии, нейтрали держат воздух.</p>
+  </div>
+</section>
+
+<!-- ============================ 03 · ТИПОГРАФИКА ============================ -->
+<section class="block glow-edge" id="type">
+  <div class="wrap">
+    <span class="label">03 · Типографика</span>
+    <div class="section-head">
+      <h2>Сериф для&nbsp;смысла, гротеск для&nbsp;дела</h2>
+      <p class="lead">Три гарнитуры, ни&nbsp;одной лишней: Playfair несёт характер в&nbsp;заголовках, Manrope держит читаемость текста, JetBrains Mono маркирует разделы и&nbsp;цифры.</p>
+    </div>
+
+    <div class="type-row">
+      <div class="demo-serif">Playfair&nbsp;Display <span class="grad-text" style="font-style:italic;">за&nbsp;два дня</span></div>
+      <div class="meta">Display · заголовки · 500–800 · italic для&nbsp;градиентных слов</div>
+    </div>
+    <div class="type-row">
+      <div class="demo-sans">Manrope&nbsp;— корпус, лиды, кнопки</div>
+      <div class="meta">Body · текст · 400 / 500 / 600 / 700 / 800</div>
+    </div>
+    <div class="type-row">
+      <div class="demo-mono">JetBrains Mono · 01 / HACKATHON</div>
+      <div class="meta">Mono · лейблы · метрики · hex · .16–.22em</div>
+    </div>
+
+    <div class="scale">
+      <div class="row"><div class="tag">H1 · Дисплей</div><div class="ex-h1">Соберите продукт за&nbsp;два дня</div></div>
+      <div class="row"><div class="tag">H2 · Заголовок</div><div class="ex-h2">Не&nbsp;лекция про&nbsp;ИИ, а&nbsp;два дня созидания</div></div>
+      <div class="row"><div class="tag">Body · Текст</div><div class="ex-body">Команда строит работающий прототип на&nbsp;ИИ под вашу задачу и&nbsp;выходит обученной применять его в&nbsp;реальных процессах.</div></div>
+      <div class="row"><div class="tag">Label · Моно</div><div class="ex-label">01 · Что это</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 04 · КОМПОНЕНТЫ ============================ -->
+<section class="block" id="components">
+  <div class="wrap">
+    <span class="label">04 · Компоненты</span>
+    <div class="section-head">
+      <h2>Кнопки, карточки, бейджи, теги</h2>
+      <p class="lead">Единый набор кирпичей бренда. Закатный градиент&nbsp;— для&nbsp;главного действия; всё остальное держится на&nbsp;креме, линиях и&nbsp;скруглениях.</p>
+    </div>
+
+    <div class="grid g2">
+      <div class="card"><div class="pad">
+        <div class="comp-label">Кнопки</div>
+        <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;">
+          <a class="btn btn-primary">Подать заявку <span class="arr">→</span></a>
+          <a class="btn btn-ghost">Как это устроено</a>
+        </div>
+        <p style="font-size:14px;color:var(--ink-soft);font-weight:500;margin-top:18px;">Primary&nbsp;— закатный градиент, скругление 100px, мягкая тень-glow. Secondary&nbsp;— контур цвета текста, заливается на&nbsp;ховере.</p>
+      </div></div>
+
+      <div class="card"><div class="pad">
+        <div class="comp-label">Бейдж хакатона &amp;&nbsp;теги форматов</div>
+        <div style="margin-bottom:18px;"><span class="hack-badge"><span class="pt"></span> Hackathon</span></div>
+        <div class="fmt-tags">
+          <span class="fmt-tag ft-sun">1–2 дня</span>
+          <span class="fmt-tag ft-violet">онлайн</span>
+          <span class="fmt-tag ft-sage">офлайн</span>
+          <span class="fmt-tag ft-ink">команда 4–8</span>
+        </div>
+      </div></div>
+    </div>
+
+    <div class="grid g3" style="margin-top:18px;">
+      <div class="card hover demo-card"><div class="pad demo-card-cream" style="min-height:140px;display:flex;flex-direction:column;">
+        <span class="tag" style="color:var(--sage);">Sprint · 1 день</span>
+        <h4>Разведка боем</h4>
+        <p>Карточка на&nbsp;креме: линия + скругление 22px.</p>
+      </div></div>
+      <div class="card hover demo-card"><div class="pad demo-card-sun" style="min-height:140px;display:flex;flex-direction:column;">
+        <span class="tag">Build · 2 дня · ★ Хит</span>
+        <h4>Продукт за&nbsp;два дня</h4>
+        <p>Акцентная карта&nbsp;— закатный градиент.</p>
+      </div></div>
+      <div class="card hover demo-card"><div class="pad demo-card-violet" style="min-height:140px;display:flex;flex-direction:column;">
+        <span class="tag">Series · под отдел</span>
+        <h4>Серия для&nbsp;отдела</h4>
+        <p>Вторичная карта&nbsp;— дусковый фиолет.</p>
+      </div></div>
+    </div>
+
+    <div class="card" style="margin-top:18px;"><div class="pad">
+      <div class="comp-label">Мини-таймер обратного отсчёта</div>
+      <div class="mini-timer" aria-hidden="true">
+        <div class="unit"><span class="num">21</span><span class="cap">дней</span></div>
+        <span class="sep">:</span>
+        <div class="unit"><span class="num">08</span><span class="cap">часов</span></div>
+        <span class="sep">:</span>
+        <div class="unit"><span class="num">45</span><span class="cap">минут</span></div>
+        <span class="sep">:</span>
+        <div class="unit"><span class="num">12</span><span class="cap">секунд</span></div>
+      </div>
+      <p style="font-size:14px;color:var(--ink-soft);font-weight:500;margin-top:16px;">Цифры&nbsp;— моноширинный JetBrains Mono с&nbsp;табличными цифрами и&nbsp;закатным градиентом по&nbsp;тексту. Подписи&nbsp;— тихий лейбл. Держит ощущение «старт скоро».</p>
+    </div></div>
+  </div>
+</section>
+
+<!-- ============================ 05 · АТМОСФЕРА ============================ -->
+<section class="block glow-edge" id="mood">
+  <div class="wrap">
+    <span class="label">05 · Атмосфера</span>
+    <div class="section-head">
+      <h2>Тёплое свечение и&nbsp;светлый максимализм</h2>
+      <p class="lead">Настроение бренда&nbsp;— энергия двух дней созидания на&nbsp;плайе под закат: тепло, простор, цвет и&nbsp;ощущение, что прямо сейчас что-то рождается.</p>
+    </div>
+
+    <div class="mood-grid">
+      <div class="mood mood-1">
+        <span class="mtag">Свечение</span>
+        <h3>Тёплое солнечное свечение</h3>
+        <p>Радиальные градиенты заката за&nbsp;контентом&nbsp;— как солнце над&nbsp;плайей. Свет, а&nbsp;не&nbsp;тень: глубина строится теплом, не&nbsp;затемнением.</p>
+      </div>
+      <div class="mood mood-2">
+        <span class="mtag">Созидание</span>
+        <h3>Энергия двух дней</h3>
+        <p>Burning&nbsp;Man-вайб: собрались, построили, защитили. Драйв и&nbsp;скорость&nbsp;— главное действие всегда на&nbsp;закатном градиенте.</p>
+      </div>
+      <div class="mood mood-4">
+        <span class="wheel-deco" aria-hidden="true">
+          <span style="height:16px;background:#E84855"></span>
+          <span style="height:28px;background:#F6A21E"></span>
+          <span style="height:20px;background:#C85128"></span>
+          <span style="height:32px;background:#6B4E9E"></span>
+          <span style="height:14px;background:#7A8B5A"></span>
+        </span>
+        <h3>Цветовое колесо</h3>
+        <p>Фирменный мотив&nbsp;— вертикальные цветные полосы спектра. Появляется в&nbsp;шапке, на&nbsp;обложке и&nbsp;в&nbsp;CTA как ритмичный знак бренда.</p>
+      </div>
+      <div class="mood mood-3">
+        <span class="mtag">Воздух</span>
+        <h3>Светлый максимализм и&nbsp;простор</h3>
+        <p>Много воздуха между блоками, крупная сетка, щедрые отступы. Премиально и&nbsp;легко&nbsp;— противоположность тёмному «AI-официозу».</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ 06 · ФОТОГРАФИЯ И ГРАФИКА ============================ -->
+<section class="block" id="photo">
+  <div class="wrap">
+    <span class="label">06 · Фотография и&nbsp;графика</span>
+    <div class="section-head">
+      <h2>Тёплая, светлая, живая</h2>
+      <p class="lead">Образный ряд&nbsp;— команды за&nbsp;работой, момент созидания, тёплый дневной и&nbsp;закатный свет, фактуры пустыни и&nbsp;плайи. Ниже&nbsp;— цветовые мудборд-плашки, не&nbsp;реальные фото.</p>
+    </div>
+
+    <div class="board-grid" aria-hidden="true">
+      <div class="board b1"><span>закатный свет</span></div>
+      <div class="board b2"><span>песок · крем · фактура</span></div>
+      <div class="board b3"><span>команда · созидание</span></div>
+      <div class="board b4"><span>тёплое солнце</span></div>
+      <div class="board b5"><span>плайя · простор</span></div>
+      <div class="board b6"><span>энергия двух дней</span></div>
+    </div>
+
+    <div class="grid g2" style="margin-top:30px;">
+      <div>
+        <div class="comp-label">Делаем</div>
+        <ul class="rules">
+          <li>Тёплый дневной и&nbsp;закатный свет, живые сцены: люди строят, обсуждают, защищают демо.</li>
+          <li>Естественные тёплые тона&nbsp;— песок, охра, терракота; кадры дышат воздухом.</li>
+          <li>Фактуры пустыни / плайи, простор, ощущение события и&nbsp;скорости.</li>
+          <li>Лёгкое тёплое тонирование, чтобы кадр жил в&nbsp;песочной палитре бренда.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="comp-label">Не&nbsp;делаем</div>
+        <ul class="rules no">
+          <li>Тёмная, холодная или серо-синяя стоковая графика.</li>
+          <li>Корпоративный официоз: переговорки, рукопожатия в&nbsp;костюмах, постановочные «бизнес-улыбки».</li>
+          <li>Generic «AI»: неон на&nbsp;чёрном, синие схемы нейросетей, голограммы.</li>
+          <li>Пёстрые кадры, конфликтующие с&nbsp;палитрой, и&nbsp;текст поверх фото.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="ph-note">Плашки выше&nbsp;— плейсхолдер настроения (CSS-градиенты). Реальные фото подбираются по&nbsp;этим словесным правилам.</p>
+  </div>
+</section>
+
+<!-- ============================ 07 · ТОН ГОЛОСА ============================ -->
+<section class="block glow-edge" id="voice">
+  <div class="wrap">
+    <span class="label">07 · Тон голоса</span>
+    <div class="section-head">
+      <h2>Энергично, тепло, по&nbsp;делу</h2>
+      <p class="lead">Голос бренда&nbsp;— человечный и&nbsp;прямой, основатель основателю. Энергия двух дней созидания, без&nbsp;корп-штампов и&nbsp;без&nbsp;воды.</p>
+    </div>
+
+    <div class="voice-phrases">
+      <p class="ph">«Соберите продукт за&nbsp;два дня вместе с&nbsp;вашей командой».</p>
+      <p class="ph">«Реальный результат, а&nbsp;не&nbsp;лекция про&nbsp;ИИ».</p>
+      <p class="ph">«Дальше&nbsp;— стройка. Знания остаются у&nbsp;вас».</p>
+    </div>
+
+    <div class="vox">
+      <div class="say">
+        <div class="col-head"><span class="mark">●</span> Говорим</div>
+        <ul class="rules">
+          <li>Прямо и&nbsp;по&nbsp;делу: глаголы действия, короткие фразы, живой ритм.</li>
+          <li>Энергия и&nbsp;тепло&nbsp;— «соберём», «построим», «защитим демо».</li>
+          <li>Главный посыл&nbsp;— реальный продукт + обученная команда, дальше без&nbsp;нас.</li>
+          <li>Человеческий язык: «ИИ», «прототип», «два дня», а&nbsp;не&nbsp;термины ради&nbsp;терминов.</li>
+        </ul>
+      </div>
+      <div class="avoid">
+        <div class="col-head"><span class="mark">○</span> Избегаем</div>
+        <ul class="rules no">
+          <li>Канцелярита и&nbsp;корп-штампов: «синергия», «инновационные решения», «трансформация».</li>
+          <li>Воды и&nbsp;общих слов без&nbsp;конкретики и&nbsp;результата.</li>
+          <li>Англо-русского винегрета и&nbsp;жаргона ради&nbsp;умного вида.</li>
+          <li>Обещаний «под&nbsp;ключ» и&nbsp;пустого хайпа вокруг&nbsp;«AI».</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============================ ФУТЕР ============================ -->
+<footer>
+  <div class="wrap foot-inner">
+    <div class="foot-logo">
+      <span class="wheel" aria-hidden="true" style="display:inline-flex;gap:2.5px;align-items:flex-end;height:18px;">
+        <span style="width:3.5px;height:11px;border-radius:2px;background:#E84855;display:block;"></span>
+        <span style="width:3.5px;height:17px;border-radius:2px;background:#F6A21E;display:block;"></span>
+        <span style="width:3.5px;height:13px;border-radius:2px;background:#C85128;display:block;"></span>
+        <span style="width:3.5px;height:19px;border-radius:2px;background:#6B4E9E;display:block;"></span>
+      </span>
+      Зинин <span class="x">✕</span> Куимов
+    </div>
+    <div class="foot-note">
+      Брендбук · «Плайя на&nbsp;закате» · v1 · часть сети <a href="https://zinin.ai" target="_blank" rel="noopener">Zinin&nbsp;AI</a> · 2026
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  "use strict";
+  var nav = document.getElementById("nav");
+  function onScroll() {
+    if (window.scrollY > 12) nav.classList.add("scrolled");
+    else nav.classList.remove("scrolled");
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
