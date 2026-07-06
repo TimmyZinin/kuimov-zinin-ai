@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ZININ.AI × Куимов — ИИ-грамотность для предпринимателей: обучение, агенты, корпоративные хакатоны</title>
-<meta name="description" content="Партнёрская витрина сети «Зинин и Партнёры»: обучаем предпринимателей и команды работать с ИИ, строим агентов под ключ и проводим корпоративные хакатоны.">
+<meta name="description" content="Сеть «Зинин и Партнёры»: обучаем предпринимателей и команды работать с ИИ, строим агентов под ключ и проводим корпоративные хакатоны.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ru_RU">
 <meta property="og:url" content="https://kuimov.zinin.ai/">
@@ -138,7 +138,7 @@
   .svc-flag .lbl::before{background:#fff}
   .flagbadge{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;background:rgba(255,255,255,.2);color:#fff;border-radius:100px;padding:7px 14px}
 
-  .illus{display:block;width:100%;height:auto;border-radius:var(--radius);border:1px solid var(--line);margin:34px 0 44px;box-shadow:0 22px 54px rgba(200,81,40,.13)}
+  .illus{display:block;width:100%;height:clamp(200px,28vw,360px);object-fit:cover;object-position:center 42%;border-radius:var(--radius);border:1px solid var(--line);margin:30px 0 40px;box-shadow:0 22px 54px rgba(200,81,40,.13)}
   /* calculator */
   .calc{border:1px solid var(--line);border-radius:14px;background:var(--sand);padding:18px;display:flex;flex-direction:column;gap:14px}
   .calc .clbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
@@ -232,6 +232,15 @@
     .nav-cta{display:none}
     .hero-btns .btn,.final-btns .btn{width:100%;white-space:normal;text-align:center}
   }
+  /* sticky CTA bar */
+  .stickybar{position:fixed;left:0;right:0;bottom:0;z-index:90;background:rgba(251,245,233,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-top:1px solid var(--line);padding:10px 20px calc(10px + env(safe-area-inset-bottom))}
+  .stickybar .in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .stickybar .txt{font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+  .stickybar .btn{padding:11px 22px;font-size:14px}
+  @media (max-width:560px){
+    .stickybar .txt{display:none}
+    .stickybar .btn{width:100%;white-space:normal;text-align:center}
+  }
   @media (prefers-reduced-motion:reduce){*{animation:none !important;scroll-behavior:auto}}
 </style>
 </head>
@@ -250,7 +259,6 @@
           <span style="height:12px;background:#7A8B5A"></span>
         </span>
         Зинин <span class="x">✕</span> Куимов
-        <span class="badge">партнёрская витрина</span>
       </a>
       <nav class="nav-links" aria-label="Основная навигация">
         <a href="#why">Зачем</a>
@@ -260,7 +268,7 @@
         <a href="#team">Кто ведёт</a>
       </nav>
       <div class="nav-cta">
-        <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">Разберём вашу задачу →</a>
+        <a class="btn btn-primary" href="https://t.me/zinin_kuimov_bot?start=site_header" target="_blank" rel="noopener">Разберём вашу задачу →</a>
       </div>
     </div>
   </div>
@@ -274,7 +282,7 @@
     <p class="p-strong">Обучаем вас и команду работать с ИИ, строим агентов под ключ и проводим корпоративные хакатоны, где инструменты собирает ваша команда.</p>
     <p class="p-sub">Пять форматов работы: от личного обучения фаундера до агента, который берёт на себя работу целого участка. Начинаем с бесплатного разбора ваших процессов.</p>
     <div class="hero-btns">
-      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">Расскажите о задаче — разберём бесплатно →</a>
+      <a class="btn btn-primary" href="https://t.me/zinin_kuimov_bot?start=site_hero" target="_blank" rel="noopener">Расскажите о задаче — разберём бесплатно →</a>
       <a class="btn btn-ghost" href="#services">Смотрите услуги и цены</a>
     </div>
   </div>
@@ -521,8 +529,8 @@
     <h2>Начните с бесплатного разбора</h2>
     <p>Созвонимся на 30 минут, разберём два-три ваших процесса и предложим формат. Это просто разговор, без обязательств.</p>
     <div class="final-btns">
-      <a class="btn btn-primary" href="https://calendly.com/timzinin" target="_blank" rel="noopener">Расскажите о задаче — разберём бесплатно →</a>
-      <a class="btn btn-ghost" href="https://t.me/timzinin" target="_blank" rel="noopener">Напишите в Telegram</a>
+      <a class="btn btn-primary" href="https://t.me/zinin_kuimov_bot?start=site_final" target="_blank" rel="noopener">Расскажите о задаче — разберём бесплатно →</a>
+      <a class="btn btn-ghost" href="https://t.me/zinin_kuimov_bot?start=site_final_tg" target="_blank" rel="noopener">Напишите в Telegram</a>
     </div>
   </div>
 </section>
@@ -564,6 +572,13 @@
   }
 })();
 </script>
+
+<div class="stickybar" role="complementary">
+  <div class="in">
+    <span class="txt">Бесплатный разбор · 30 минут · без обязательств</span>
+    <a class="btn btn-primary" href="https://t.me/zinin_kuimov_bot?start=site_sticky" target="_blank" rel="noopener">📅 Записаться на бесплатный разбор</a>
+  </div>
+</div>
 
 </body>
 </html>
